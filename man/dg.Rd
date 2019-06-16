@@ -2,7 +2,9 @@
 \alias{dg}
 \title{A Modified diag Function}
 \description{This function works in the way analogous to the diag function of Matlab.}
-\usage{dg(x)}
+\usage{
+dg(x)
+}
 \arguments{
 \item{x}{a number, vector or square matrix.}
 }
@@ -14,6 +16,6 @@ LI Wu <liwu@staff.shu.edu.cn>
 }
 
 \examples{
-diag(matrix(2,3))
-dg(matrix(2,3))
+diag(matrix(2, 3))
+dg(matrix(2, 3))
 }

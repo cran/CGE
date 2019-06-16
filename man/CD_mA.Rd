@@ -5,7 +5,9 @@
 \description{
 This function computes a Cobb-Douglas monetary demand structure matrix in a monetary economy.
 }
-\usage{CD_mA(alpha,Beta,p)}
+\usage{
+CD_mA(alpha, Beta, p)
+}
 \arguments{
 \item{alpha}{a nonnegative numeric m-vector or m-by-1 matrix.}
 \item{Beta}{nonnegative numeric n-by-m matrix whose each column sum equals 1.}
@@ -25,10 +27,12 @@ LI Wu <liwu@staff.shu.edu.cn>
 Some elements of Beta corresponding to money equal -1.
 }
 \examples{
-alpha<-c(1,1,1)
-Beta<-matrix(c(0.5,  0.5, 0.5,
-               0.5,  0.5, 0.5,
-               -1,   -1,  -1),3,3,TRUE)
-p<-1:3
-CD_mA(alpha,Beta,p)
+alpha <- c(1, 1, 1)
+Beta <- matrix(c(
+  0.5, 0.5, 0.5,
+  0.5, 0.5, 0.5,
+  -1,  -1,  -1
+), 3, 3, TRUE)
+p <- 1:3
+CD_mA(alpha, Beta, p)
 }

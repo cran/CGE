@@ -2,7 +2,9 @@
 \alias{Example3.4}
 \title{Example 3.4 in Li (2019)}
 \description{This is Example 3.2 in Li (2019),which is a Lontief three-sector economy with one primary factor.}
-\usage{Example3.4()}
+\usage{
+Example3.4()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

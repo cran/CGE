@@ -2,7 +2,9 @@
 \alias{Example2.3}
 \title{Example2.3 in Li (2019)}
 \description{This is Example 2.3 in Li (2019), which is a von Neumann economy.}
-\usage{Example2.3()}
+\usage{
+Example2.3()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

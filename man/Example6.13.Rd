@@ -10,7 +10,7 @@ LI Wu <liwu@staff.shu.edu.cn>
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
 }
 \examples{
-ge<-Example6.13()
-matplot(ge$ts.p)
-matplot(ge$ts.z)
+ge <- Example6.13()
+matplot(ge$ts.p, type = "l")
+matplot(ge$ts.z, type = "l")
 }

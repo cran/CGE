@@ -25,33 +25,34 @@ LI Wu <liwu@staff.shu.edu.cn>
 
 \examples{
 \donttest{
-ChinaCGE2012$A(list(p=rep(1,41)))
+ChinaCGE2012$A(list(p = rep(1, 41)))
 
 #####
-cge<-function(GRExg=0){
+cge <- function(GRExg = 0) {
   sdm(
-  A=ChinaCGE2012$A,
-  B=ChinaCGE2012$B,
-  S0Exg=ChinaCGE2012$S0Exg,
-  GRExg=GRExg,
-  z0=ChinaCGE2012$z0,
-  priceAdjustmentVelocity=0.03)
+    A = ChinaCGE2012$A,
+    B = ChinaCGE2012$B,
+    S0Exg = ChinaCGE2012$S0Exg,
+    GRExg = GRExg,
+    z0 = ChinaCGE2012$z0,
+    priceAdjustmentVelocity = 0.03
+  )
 }
 
 #####
-ge0<-cge()
-names(ge0$p)<-ChinaCGE2012$subject.names
+ge0 <- cge()
+names(ge0$p) <- ChinaCGE2012$subject.names
 ge0$p
 
-names(ge0$z)<-ChinaCGE2012$sector.names
+names(ge0$z) <- ChinaCGE2012$sector.names
 ge0$z
 
 #####
-ge6<-cge(GRExg=0.06)
-names(ge6$p)<-ChinaCGE2012$subject.names
+ge6 <- cge(GRExg = 0.06)
+names(ge6$p) <- ChinaCGE2012$subject.names
 ge6$p
 
-names(ge6$z)<-ChinaCGE2012$sector.names
+names(ge6$z) <- ChinaCGE2012$sector.names
 ge6$z
 }
 }

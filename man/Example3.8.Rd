@@ -2,7 +2,9 @@
 \alias{Example3.8}
 \title{Example 3.8 in Li (2019)}
 \description{This is Example 3.8 in Li (2019),which is a Cobb-Douglas three-sector economy with one primary factor.}
-\usage{Example3.8()}
+\usage{
+Example3.8()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

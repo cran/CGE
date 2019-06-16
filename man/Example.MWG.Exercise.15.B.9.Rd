@@ -2,7 +2,14 @@
 \alias{Example.MWG.Exercise.15.B.9}
 \title{Exercise 15.B.9 in MWG (1995)}
 \description{This is Exercise 15.B.9 in MWG (1995, P541), which is a pure exchange 2-by-2 economy.}
-\usage{Example.MWG.Exercise.15.B.9(S0Exg=matrix(c(30, 0, 0, 20),2,2,TRUE))}
+\usage{
+Example.MWG.Exercise.15.B.9(
+  S0Exg = matrix(c(
+    30, 0,
+    0, 20
+  ), 2, 2, TRUE)
+)
+}
 \arguments{
 \item{S0Exg}{an exogenous supply matrix, which will be passed to the function sdm.}
 }
@@ -18,7 +25,9 @@ Mas-Colell, Andreu and Whinston, Michael Dennis and Green, Jerry R. (1995, ISBN:
 Example.MWG.Exercise.15.B.9()
 
 #####
-S<-matrix(c(5, 0,
-            0, 20),2,2,TRUE)
-Example.MWG.Exercise.15.B.9(S0Exg=S)
+S <- matrix(c(
+  5, 0,
+  0, 20
+), 2, 2, TRUE)
+Example.MWG.Exercise.15.B.9(S0Exg = S)
 }

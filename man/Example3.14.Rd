@@ -2,7 +2,9 @@
 \alias{Example3.14}
 \title{Example 3.14 in Li (2019)}
 \description{This is Example 3.14 in Li (2019),which illustrates the relationship between a regular economy and a pure exchange economy.}
-\usage{Example3.14()}
+\usage{
+Example3.14()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

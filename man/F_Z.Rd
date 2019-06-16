@@ -2,7 +2,9 @@
 \alias{F_Z}
 \title{Exchange Function}
 \description{Given a price vector, a demand structure matrix and a supply matrix, this function computes the (disequilibrium) exchange results of an exchange process. There are n commodities and m agents in the exchange process.}
-\usage{F_Z(A,p,S)}
+\usage{
+F_Z(A, p, S)
+}
 \arguments{
 \item{A}{a n-by-m demand structure matrix.}
 \item{p}{a price n-vector.}

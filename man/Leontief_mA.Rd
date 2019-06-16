@@ -4,7 +4,9 @@
 \description{
 This function computes a Leontief monetary demand structure matrix in a monetary economy.
 }
-\usage{Leontief_mA(A,p)}
+\usage{
+Leontief_mA(A, p)
+}
 \arguments{
 \item{A}{a numeric n-by-m matrix.}
 \item{p}{a nonnegative numeric n-vector or n-by-1 matrix.}

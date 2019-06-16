@@ -5,33 +5,36 @@
 This function computes the general equilibrium and simulates the economic dynamics. The key part of this function is an exchange function (see \code{\link{F_Z}}), which is expounded in Li (2010, 2019).
 }
 \usage{
-sdm(A,
-    B=diag(nrow(A)),
-    n=nrow(B),
-    m=ncol(B),
-    S0Exg=matrix(NA,n,m),
-    p0=matrix(1,nrow=n,ncol=1),
-    z0=matrix(100,nrow=m,ncol=1),
-    GRExg=NA,
-    moneyOwnerIndex=NULL,
-    moneyIndex=NULL,
-    pExg=NULL,
-    tolCond=1e-5,
-    maxIteration=200,
-    numberOfPeriods=300,
-    depreciationCoef=0.8,
-    thresholdForPriceAdjustment=0.99,
-    priceAdjustmentMethod='variable',
-    priceAdjustmentVelocity=0.15,
-    priceAdjustmentVelocityCoefficient=0.95,
-    substitutionMethod='finalValue',
-    trace=TRUE,
-    ts=FALSE,
-    policy=NULL,
-    exchangeFunction=F_Z)}
+sdm(
+  A,
+  B = diag(nrow(A)),
+  n = nrow(B),
+  m = ncol(B),
+  S0Exg = matrix(NA, n, m),
+  p0 = matrix(1, nrow = n, ncol = 1),
+  z0 = matrix(100, nrow = m, ncol = 1),
+  GRExg = NA,
+  moneyOwnerIndex = NULL,
+  moneyIndex = NULL,
+  pExg = NULL,
+  tolCond = 1e-5,
+  maxIteration = 200,
+  numberOfPeriods = 300,
+  depreciationCoef = 0.8,
+  thresholdForPriceAdjustment = 0.99,
+  priceAdjustmentMethod = "variable",
+  priceAdjustmentVelocity = 0.15,
+  priceAdjustmentVelocityCoefficient = 0.95,
+  substitutionMethod = "finalValue",
+  trace = TRUE,
+  ts = FALSE,
+  policy = NULL,
+  exchangeFunction = F_Z
+)
+}
 \arguments{
 \item{A}{a demand structure n-by-m matrix (or a function which returns an n-by-m matrix).}
-\item{B}{a supply structure n-by-m matrix (or a function which returns an n-by-m matrix).}
+\item{B}{a supply structure n-by-m matrix (or a function which returns an n-by-m matrix). If (i,j)-th element of S0Exg is not NA, the value of the (i,j)-th element of B will be usless and ignored.}
 \item{n}{the number of commodities.}
 \item{m}{the number of economic agents (or sectors).}
 \item{S0Exg}{an initial exogenous supply n-by-m matrix.}
@@ -156,7 +159,7 @@ LI Wu <liwu@staff.shu.edu.cn>
 \code{\link{Example9.10}};
 }
 \examples{
-## Example on page 352 in Varian (1992)
+## the example on page 352 in Varian (1992)
 ge <- sdm(
   A = function(state) {
     a <- 0.5
@@ -166,7 +169,8 @@ ge <- sdm(
                      0.5, 0,   0,
                      0.5, 1 - a, 1 - a), 3, 3, TRUE)
 
-    CD_A(alpha, Beta, state$p) #Demand coefficient matrix.
+    #demand structure matrix (alias demand coefficient matrix).
+    CD_A(alpha, Beta, state$p)
   },
   B = diag(3),
   S0Exg = matrix(c(NA, NA, NA,

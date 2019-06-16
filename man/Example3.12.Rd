@@ -2,7 +2,9 @@
 \alias{Example3.12}
 \title{Example 3.12 in Li (2019)}
 \description{This is Example 3.12 in Li (2019),which is an economy with decreasing returns to scale.}
-\usage{Example3.12()}
+\usage{
+Example3.12()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

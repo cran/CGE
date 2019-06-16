@@ -1,7 +1,7 @@
 \name{PF_eig}
 \alias{PF_eig}
-\title{P-F(Perron-Frobenius) Eigenvalue and Eigenvector}
-\description{This function computes the P-F(Perron-Frobenius) eigenvalue and eigenvector of an indecomposable nonnegative square matrix.}
+\title{P-F (i.e. Perron-Frobenius) Eigenvalue and Eigenvector}
+\description{This function computes the P-F (i.e. Perron-Frobenius) eigenvalue and eigenvector of an indecomposable nonnegative square matrix.}
 \usage{PF_eig(M)}
 \arguments{
 \item{M}{an indecomposable nonnegative square matrix.}

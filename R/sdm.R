@@ -19,40 +19,40 @@ sdm <- function(A,
                 numberOfPeriods = 300,
                 depreciationCoef = 0.8,
                 thresholdForPriceAdjustment = 0.99,
-                priceAdjustmentMethod = 'variable',
+                priceAdjustmentMethod = "variable",
                 priceAdjustmentVelocity = 0.15,
                 priceAdjustmentVelocityCoefficient = 0.95,
-                substitutionMethod = 'finalValue',
+                substitutionMethod = "finalValue",
                 trace = TRUE,
                 ts = FALSE,
                 policy = NULL,
-                exchangeFunction = F_Z)
-{
-  #####definition of economic transition function xNext
-  xNext <- function (xt) {
+                exchangeFunction = F_Z) {
+  ##### definition of economic transition function xNext
+  xNext <- function(xt) {
     p_t <- xt$p
     S_t <- xt$S
     q_t <- xt$q
     z_t <- xt$z
     e_t <- xt$e
 
-    if (all(is.na(e_t)))
+    if (all(is.na(e_t))) {
       e_tp1 <- NA
+    }
 
     p_tp1 <- p_t
     switch(
       priceAdjustmentMethod,
-      'fixed' = {
+      "fixed" = {
         for (ka in 1:n) {
-          if (q_t[ka] <= thresholdForPriceAdjustment)
+          if (q_t[ka] <= thresholdForPriceAdjustment) {
             p_tp1[ka] <- p_t[ka] * (1 - priceAdjustmentVelocity)
-          else
+          } else {
             p_tp1[ka] <- p_t[ka]
-
+          }
         }
-        p_tp1 <- p_tp1 / sum(p_tp1)  #normalize
+        p_tp1 <- p_tp1 / sum(p_tp1) # normalize
       },
-      'variable' = {
+      "variable" = {
         p_tp1 <- p_t * (1 - priceAdjustmentVelocity * (1 - q_t))
 
         if (any(!is.na(pExg))) {
@@ -62,11 +62,11 @@ sdm <- function(A,
           p_tp1[!is.na(pExg)] <- pExg[!is.na(pExg)]
         }
         else {
-          p_tp1 <- p_tp1 / sum(p_tp1)  #normalize
+          p_tp1 <- p_tp1 / sum(p_tp1) # normalize
         }
       },
-      'monetary' = {
-        #monetary economy
+      "monetary" = {
+        # monetary economy
         p_tp1 <- p_t * (1 - priceAdjustmentVelocity * (1 - q_t))
         e_tp1 <-
           e_t * (1 - priceAdjustmentVelocity * (1 - q_t[moneyIndex]))
@@ -74,30 +74,33 @@ sdm <- function(A,
         p_tp1 <- p_tp1 / e_tp1[1]
         e_tp1 <- e_tp1 / e_tp1[1]
 
-        if (!is.null(pExg) && length(pExg) != 0)
+        if (!is.null(pExg) && length(pExg) != 0) {
           p_tp1[!is.na(pExg)] <- pExg[!is.na(pExg)]
+        }
       },
 
       stop("LI: Wrong priceAdjustmentMethod!,xnext")
-    )#switch
+    ) # switch
 
-    if (is.numeric(B))
+    if (is.numeric(B)) {
       B_t <- B
-    else
+    } else {
       B_t <- B(list(p = p_t, z = z_t, t = time - 1))
+    }
 
     S_tp1 <- (B_t %*% dg(z_t) + depreciationCoef * dg(1 - q_t) %*% S_t)
 
     if (all(is.na(S0Exg))) {
 
-    }#Set exogenous supply
+    } # Set exogenous supply
     else {
       S_tp1[!is.na(S0Exg)] <- S_t[!is.na(S0Exg)] * (1 + GRExg)
 
       if (any(!is.na(e_t))) {
-        for (i in 1:length(e_t))
+        for (i in 1:length(e_t)) {
           S_tp1[moneyIndex[i], moneyOwnerIndex[i]] <-
             S_tp1[moneyIndex[i], moneyOwnerIndex[i]] / e_t[i] * e_tp1[i]
+        }
       }
     }
 
@@ -112,26 +115,27 @@ sdm <- function(A,
           z = t(z),
           e = t(e)
         )
-      ) #20181204
+      ) # 20181204
       p_tp1 <- tmp$p
       S_tp1 <- tmp$S
 
-      if (!is.null(policy))
-        if(!is.null(tmp$current.policy.data))
-          policy.data <<- rbind(policy.data, tmp$current.policy.data)
-    } #20181205
+      if (!is.null(policy) && !is.null(tmp$current.policy.data)) {
+        policy.data <<- rbind(policy.data, tmp$current.policy.data)
+      }
+    } # 20181205
 
-    if (is.numeric(A))
+    if (is.numeric(A)) {
       A_tp1 <- A
-    else
+    } else {
       A_tp1 <-
-      A(list(
-        p = p_tp1,
-        z = z_t,
-        w = t(p_tp1) %*% S_tp1,
-        t = time,
-        e = e_tp1
-      )) #20140614,add e
+        A(list(
+          p = p_tp1,
+          z = z_t,
+          w = t(p_tp1) %*% S_tp1,
+          t = time,
+          e = e_tp1
+        ))
+    } # 20140614,add e
 
     tmp <- exchangeFunction(A_tp1, p_tp1, S_tp1)
     q_tp1 <- tmp$q
@@ -143,7 +147,7 @@ sdm <- function(A,
 
         warning("LI: negative_z,z_tp1<0")
       }
-      else{
+      else {
         message(z_tp1)
         stop("Li: negative_z")
       }
@@ -156,9 +160,8 @@ sdm <- function(A,
       z = z_tp1,
       e = e_tp1
     )
-
-  }#xNext
-  #####the end of definition of economic function xNext
+  } # xNext
+  ##### the end of definition of economic function xNext
 
 
   # beginning ---------------------------------------------------------------
@@ -166,36 +169,39 @@ sdm <- function(A,
 
   if (is.na(GRExg) && !all(is.na(S0Exg))) GRExg <- 0
 
-  if (trace)
+  if (trace) {
     message(paste("tolCond: ", tolCond))
+  }
 
   p <- matrix(0, n, numberOfPeriods)
   S <- array(0, dim = c(n, m, numberOfPeriods))
   q <- matrix(0, n, numberOfPeriods)
   z <- matrix(0, m, numberOfPeriods)
-  if (length(moneyIndex) > 1)
+  if (length(moneyIndex) > 1) {
     e <- matrix(0, length(moneyIndex), numberOfPeriods)
-  else
+  } else {
     e <- matrix(0, 1, numberOfPeriods)
+  }
   if (!is.null(policy)) policy.data <- data.frame()
 
-  if (all(is.na(S0Exg)))
+  if (all(is.na(S0Exg))) {
     S0 <- matrix(0, n, m)
-  else {
+  } else {
     S0 <- S0Exg
     S0[is.na(S0)] <- 0
   }
 
   firstExgSupplyIndex <-
-    which(!is.na(c(S0Exg)))[1] #Here we may get NA, not empty!
+    which(!is.na(c(S0Exg)))[1] # Here we may get NA, not empty!
 
   if (!is.null(moneyIndex) && !all(is.na(moneyIndex))) {
-    priceAdjustmentMethod <- 'monetary' #for monetary economy
+    priceAdjustmentMethod <- "monetary" # for monetary economy
 
     e0 <- matrix(1, length(moneyIndex), 1)
   }
-  else
+  else {
     e0 <- NA
+  }
 
   time <- 1
 
@@ -257,68 +263,71 @@ sdm <- function(A,
     toleranceRec[k] <- tolerance
 
     if ((k >= 5 &&
-         (toleranceRec[k] / toleranceRec[k - 1] > 0.9)) ||
-        tolerance > 0.99) {
-      #converge slowly
-      if (!is.na(GRExg) && GRExg == 0)
-        substitutionMethod <- 'meanValue'
-      else
-        substitutionMethod <- 'pMeanValue'
+      (toleranceRec[k] / toleranceRec[k - 1] > 0.9)) ||
+      tolerance > 0.99) {
+      # converge slowly
+      if (!is.na(GRExg) && GRExg == 0) {
+        substitutionMethod <- "meanValue"
+      } else {
+        substitutionMethod <- "pMeanValue"
+      }
 
-      message(paste(k, ', substitutionMethod: ', substitutionMethod))
+      message(paste(k, ", substitutionMethod: ", substitutionMethod))
 
 
-      if (k > 10 && (toleranceRec[k] / toleranceRec[k - 1] > 0.95))
+      if (k > 10 && (toleranceRec[k] / toleranceRec[k - 1] > 0.95)) {
         priceAdjustmentVelocity <-
-        priceAdjustmentVelocity * priceAdjustmentVelocityCoefficient
-
+          priceAdjustmentVelocity * priceAdjustmentVelocityCoefficient
+      }
     }
 
 
     if (!is.na(GRExg) && GRExg == 0 && toleranceU < tolCond && toleranceZ >= tolCond) {
-      substitutionMethod <- 'zMeanValue'
-      message(paste('substitutionMethod: ', substitutionMethod))
+      substitutionMethod <- "zMeanValue"
+      message(paste("substitutionMethod: ", substitutionMethod))
     }
 
     S0 <- S[, , dim(S)[3]]
-    switch (
+    switch(
       substitutionMethod,
-      'pMeanValue' = {
+      "pMeanValue" = {
         p0 <- apply(p, 1, mean)
-        #message(paste("p0:",p0))
+        # message(paste("p0:",p0))
       },
-      'zMeanValue' = {
+      "zMeanValue" = {
         z0 <- apply(z, 1, mean)
       },
-      'meanValue' = {
+      "meanValue" = {
         p0 <- apply(p, 1, mean)
         z0 <- apply(z, 1, mean)
-        #message(paste("p0:",p0))
-        #message(paste("z0:",z0))
+        # message(paste("p0:",p0))
+        # message(paste("z0:",z0))
       },
-      'finalValue' = {
+      "finalValue" = {
         p0 <- p[, ncol(p)]
         z0 <- z[, ncol(z)]
         S0 <- S[, , dim(S)[3]]
       },
-      stop('Li: wrong substitutionMethod!')
+      stop("Li: wrong substitutionMethod!")
     )
 
     if (!is.na(firstExgSupplyIndex)) {
-      #There are exogenous supplies.
+      # There are exogenous supplies.
       z0 <- z0 / S0[firstExgSupplyIndex] * S0Exg[firstExgSupplyIndex]
       S0 <- S0 / S0[firstExgSupplyIndex] * S0Exg[firstExgSupplyIndex]
     }
-    else{
+    else {
       S0 <- S0 / max(z0)
       z0 <- z0 / max(z0)
     }
 
-    if (trace)
-      message(paste('Iteration number ', k, ': tolerance coefficient ', tolerance))
+    if (trace) {
+      message(paste("Iteration number ", k, ": tolerance coefficient ", tolerance))
+    }
 
-    if (tolerance < tolCond)
+    if (tolerance < tolCond) {
       break
+    }
 
     if (k < maxIteration) {
       xtp1 <- xNext(list(
@@ -334,7 +343,7 @@ sdm <- function(A,
       z[, 1] <- xtp1$z
       e[, 1] <- xtp1$e
     }
-  }#for (k in 1:maxIteration)
+  } # for (k in 1:maxIteration)
 
 
   # result ------------------------------------------------------------------
@@ -343,14 +352,16 @@ sdm <- function(A,
   result$z <- z0
   result$S <- S0
 
-  if (any(!is.na(e0)))
+  if (any(!is.na(e0))) {
     result$e <- t(tail(t(e), 1))
-  if (all(is.na(S0Exg)))
+  }
+  if (all(is.na(S0Exg))) {
     result$growthRate <- max(z[, ncol(z)]) / max(z[, ncol(z) - 1]) - 1
+  }
 
-  if (is.numeric(A))
+  if (is.numeric(A)) {
     result$A <- A
-  else{
+  } else {
     tmpS <- S0Exg
     tmpS[is.na(tmpS)] <- 0
     result$A <-
@@ -360,15 +371,16 @@ sdm <- function(A,
         w = result$p %*% tmpS,
         t = 1,
         e = result$e
-      ))#20140614,add e
+      )) # 20140614,add e
   }
 
-  if (is.function(B))
-    result$B <- B(list(p = result$p, z = result$z, t = 1)) #20190214
+  if (is.function(B)) {
+    result$B <- B(list(p = result$p, z = result$z, t = 1))
+  } # 20190214
 
-  if (!is.null(policy))
-    if (length(policy.data)!=0)
-      result$policy.data <- policy.data
+  if (!is.null(policy) && length(policy.data) != 0) {
+    result$policy.data <- policy.data
+  }
 
   return(result)
 }

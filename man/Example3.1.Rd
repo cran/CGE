@@ -2,7 +2,9 @@
 \alias{Example3.1}
 \title{Example 3.1 in Li (2019)}
 \description{This is Example 3.1 in Li (2019),which is a two-sector corn economy with a non-homothetic utility function.}
-\usage{Example3.1()}
+\usage{
+Example3.1()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

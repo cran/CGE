@@ -2,7 +2,9 @@
 \alias{Example2.2}
 \title{Example 2.2 in Li (2019)}
 \description{This is Example 2.2 in Li (2019), which is a Cobb-Douglas pure production economy.}
-\usage{Example2.2()}
+\usage{
+Example2.2()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

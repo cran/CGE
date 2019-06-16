@@ -2,7 +2,9 @@
 \alias{Example.Section.3.1.2.corn}
 \title{Example in Section.3.1.2 of Li (2019)}
 \description{This is the example in Section.3.1.2 of Li (2019), which is a Leontief-type two-sector corn economy.}
-\usage{Example.Section.3.1.2.corn()}
+\usage{
+Example.Section.3.1.2.corn()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

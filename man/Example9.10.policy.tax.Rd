@@ -17,7 +17,8 @@ LI Wu <liwu@staff.shu.edu.cn>
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
 }
-\seealso{\code{\link{Example9.10}};
+\seealso{
+\code{\link{Example9.10}};
 \code{\link{Example9.10.policy.interest.rate}};
 \code{\link{Example9.10.policy.money.supply}};
 \code{\link{Example9.10.policy.deflation}};

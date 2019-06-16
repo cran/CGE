@@ -2,7 +2,9 @@
 \alias{CD_A}
 \title{Cobb-Douglas Demand Structure Matrix}
 \description{This function computes the Cobb-Douglas demand structure matrix.}
-\usage{CD_A(alpha,Beta,p)}
+\usage{
+CD_A(alpha, Beta, p)
+}
 \arguments{
 \item{alpha}{a nonnegative numeric m-vector or m-by-1 matrix.}
 \item{Beta}{a nonnegative numeric n-by-m matrix whose each column sum equals 1.}
@@ -19,15 +21,17 @@ LI Wu <liwu@staff.shu.edu.cn>
 }
 
 \examples{
-CD_A(1,rbind(0.5,0.5),c(1,2))
+CD_A(1, rbind(0.5, 0.5), c(1, 2))
 
 #####
-alpha<-rbind(5,3,1)
-Beta<-matrix(c(0.6, 0.4,  0.2,
-               0.1,  0.4,  0.7,
-               0.3,  0.2,  0.1),3,3,TRUE)
-p<-1:3
-CD_A(alpha,Beta,p)
+alpha <- rbind(5, 3, 1)
+Beta <- matrix(c(
+  0.6, 0.4, 0.2,
+  0.1, 0.4, 0.7,
+  0.3, 0.2, 0.1
+), 3, 3, TRUE)
+p <- 1:3
+CD_A(alpha, Beta, p)
 }
 
 

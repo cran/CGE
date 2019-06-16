@@ -2,7 +2,9 @@
 \alias{Example4.2}
 \title{Example 4.2 in Li (2019)}
 \description{This is Example 4.2 in Li (2019),which illustrates the non-sufficient supply of the primary factor.}
-\usage{Example4.2()}
+\usage{
+Example4.2()
+}
 \author{
 LI Wu <liwu@staff.shu.edu.cn>
 }

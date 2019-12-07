@@ -11,6 +11,6 @@ LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: P
 }
 \examples{
 ge<-Example9.6()
-matplot(ge$ts.p)
-matplot(ge$ts.z)
+matplot(ge$ts.p, type="l")
+matplot(ge$ts.z, type="l")
 }

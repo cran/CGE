@@ -36,6 +36,7 @@ LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: P
 \code{\link{Example9.10.policy.deficit.fiscal}}
 }
 \examples{
+\donttest{
 ##### no policy
 ge <- Example9.10()
 matplot(ge$ts.p, type = "l")
@@ -88,4 +89,5 @@ plot(deficit.Example9.10[, 1],
 ##### tax policy (Fig. 9.16)
 ge <- Example9.10(policy = Example9.10.policy.tax)
 plot(ge$policy.data, type = "l")
+}
 }

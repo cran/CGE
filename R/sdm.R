@@ -222,7 +222,7 @@ sdm <- function(A,
 
   toleranceRec <- matrix(1, maxIteration, 1)
 
-  for (k in 1:maxIteration) {
+  for (k.iteration in 1:maxIteration) {
     for (t in 2:numberOfPeriods) {
       time <- time + 1
 
@@ -260,11 +260,11 @@ sdm <- function(A,
     tmpU <- tmpU[p[, ncol(p)] > tolCond]
     toleranceU <- max(1 - tmpU)
     tolerance <- max(c(toleranceU, toleranceZ))
-    toleranceRec[k] <- tolerance
+    toleranceRec[k.iteration] <- tolerance
 
-    if ((k >= 5 &&
-      (toleranceRec[k] / toleranceRec[k - 1] > 0.9)) ||
-      tolerance > 0.99) {
+    if ((maxIteration > 1 && tolerance > 0.99) ||
+      (k.iteration >= 5 && (toleranceRec[k.iteration] / toleranceRec[k.iteration - 1] > 0.9))
+    ) {
       # converge slowly
       if (!is.na(GRExg) && GRExg == 0) {
         substitutionMethod <- "meanValue"
@@ -272,17 +272,17 @@ sdm <- function(A,
         substitutionMethod <- "pMeanValue"
       }
 
-      message(paste(k, ", substitutionMethod: ", substitutionMethod))
+      message(paste("Iteration ", k.iteration, ", substitutionMethod: ", substitutionMethod))
 
 
-      if (k > 10 && (toleranceRec[k] / toleranceRec[k - 1] > 0.95)) {
+      if (k.iteration > 10 && (toleranceRec[k.iteration] / toleranceRec[k.iteration - 1] > 0.95)) {
         priceAdjustmentVelocity <-
           priceAdjustmentVelocity * priceAdjustmentVelocityCoefficient
       }
     }
 
 
-    if (!is.na(GRExg) && GRExg == 0 && toleranceU < tolCond && toleranceZ >= tolCond) {
+    if (maxIteration > 1 && !is.na(GRExg) && GRExg == 0 && toleranceU < tolCond && toleranceZ >= tolCond) {
       substitutionMethod <- "zMeanValue"
       message(paste("substitutionMethod: ", substitutionMethod))
     }
@@ -322,14 +322,14 @@ sdm <- function(A,
     }
 
     if (trace) {
-      message(paste("Iteration number ", k, ": tolerance coefficient ", tolerance))
+      message(paste("Iteration number ", k.iteration, ": tolerance coefficient ", tolerance))
     }
 
     if (tolerance < tolCond) {
       break
     }
 
-    if (k < maxIteration) {
+    if (k.iteration < maxIteration) {
       xtp1 <- xNext(list(
         p = p0,
         S = S0,
@@ -343,7 +343,7 @@ sdm <- function(A,
       z[, 1] <- xtp1$z
       e[, 1] <- xtp1$e
     }
-  } # for (k in 1:maxIteration)
+  } # for (k.iteration in 1:maxIteration)
 
 
   # result ------------------------------------------------------------------

@@ -39,16 +39,16 @@ sdm(
 \item{m}{the number of economic agents (or sectors).}
 \item{S0Exg}{an initial exogenous supply n-by-m matrix.}
 \item{p0}{an initial price n-vector.}
-\item{z0}{an initial activity level (or production level) m-vector.}
+\item{z0}{an m-vector consisting of the initial exchange levels (i.e. activity levels, production levels or utility levels).}
 \item{GRExg}{an exogenous growth rate.}
 \item{moneyOwnerIndex}{a vector consisting of the indices of agents supplying money.}
 \item{moneyIndex}{a vector consisting of the commodity indices of all types of money.}
 \item{pExg}{an n-vector indicating the exogenous prices (if any).}
 \item{tolCond}{the tolerance condition.}
-\item{maxIteration}{ the maximum iteration count.}
-\item{numberOfPeriods}{ the period number in each iteration.}
+\item{maxIteration}{the maximum iteration count. If the main purpose of running this function is to do simulation instead of calculating equilibrium, then maxIteration should be set to 1.}
+\item{numberOfPeriods}{the period number in each iteration.}
 \item{depreciationCoef}{the depreciation coefficient.}
-\item{thresholdForPriceAdjustment}{ the threshold for price adjustment.}
+\item{thresholdForPriceAdjustment}{the threshold for price adjustment.}
 \item{priceAdjustmentMethod}{the price adjustment method.}
 \item{priceAdjustmentVelocity}{the price adjustment velocity.}
 \item{priceAdjustmentVelocityCoefficient}{the changing coefficient of the price adjustment velocity.}
@@ -62,14 +62,14 @@ sdm(
 sdm returns a list containing the following components:
 \item{tolerance}{the tolerance of the results.}
 \item{p}{equilibrium prices.}
-\item{z}{equilibrium activities.}
+\item{z}{equilibrium exchange levels (i.e. activity levels, output levels or utility levels).}
 \item{S}{equilibrium supply matrix at the initial period.}
 \item{e}{equilibrium foreign exchange rates in a multi-money economy.}
 \item{growthRate}{the endogenous equilibrium growth rate in a pure production economy.}
 \item{A}{the equilibrium demand structure matrix.}
 \item{B}{If B is a function, the equilibrium supply structure matrix is returned.}
 \item{ts.p}{the time series of prices in the last iteration.}
-\item{ts.z}{the time series of activity levels in the last iteration.}
+\item{ts.z}{the time series of exchange levels (i.e. activity levels, production levels or utility levels) in the last iteration.}
 \item{ts.S}{the time series of supply matrix in the last iteration.}
 \item{ts.q}{the time series of sales rates in the last iteration.}
 \item{ts.e}{the time series of foreign exchange rates in the last iteration.}
@@ -79,6 +79,8 @@ sdm returns a list containing the following components:
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
 
 LI Wu (2010) A Structural Growth Model and its Applications to Sraffa's System. http://www.iioa.org/conferences/18th/papers/files/104_20100729011_AStructuralGrowthModelanditsApplicationstoSraffasSstem.pdf
+
+Torres, Jose L. (2016, ISBN: 9781622730452). Introduction to Dynamic Macroeconomic General Equilibrium Models (Second Edition). Vernon Press.
 
 Varian, Hal R. (1992, ISBN: 0393957357). Microeconomic Analysis. W. W. Norton & Company.
 }
@@ -128,7 +130,6 @@ LI Wu <liwu@staff.shu.edu.cn>
 \code{\link{Example6.9}};
 \code{\link{Example6.10}};
 \code{\link{Example6.11}};
-\code{\link{Example6.13}};
 \code{\link{Example7.1}};
 \code{\link{Example7.2}};
 \code{\link{Example7.3}};
@@ -181,8 +182,42 @@ ge <- sdm(
 )
 
 ge$p/ge$p[1]
+
+
+## the example (see Table 2.1 and 2.2) of the canonical dynamic
+## macroeconomic general equilibrium model in Torres (2016).
+discount.factor <- 0.97
+return.rate <- 1 / discount.factor - 1
+depreciation.rate <- 0.06
+
+ge <- sdm(
+  n = 4, m = 3,
+  A = function(state) {
+    a1 <- CD_A(1, rbind(0, 0.65, 0.35, 0), state$p)
+    a2 <- CD_A(1, rbind(0.4, 1 - 0.4, 0, 0), state$p)
+    a3 <- c(1, 0, 0, state$p[1] * return.rate / state$p[4])
+    cbind(a1, a2, a3)
+  },
+  B = matrix(c(
+    1, 0, 1 - depreciation.rate,
+    0, 1, 0,
+    0, 0, 1,
+    0, 1, 0
+  ), 4, 3, TRUE),
+  S0Exg = {
+    tmp <- matrix(NA, 4, 3)
+    tmp[2, 2] <- 1
+    tmp[4, 2] <- 1
+    tmp
+  },
+  priceAdjustmentVelocity = 0.03,
+  maxIteration = 1,
+  numberOfPeriods = 5000,
+  ts = TRUE
+)
+
+ge$A \%*\% diag(ge$z) # the demand matrix
+ge$p / ge$p[1]
+
+plot(ge$ts.z[, 1], type = "l")
 }
-
-
-
-

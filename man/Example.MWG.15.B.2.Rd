@@ -17,6 +17,7 @@ LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: P
 Mas-Colell, Andreu and Whinston, Michael Dennis and Green, Jerry R. (1995, ISBN: 0195073401). Microeconomic Theory. Oxford University Press (New York).
 }
 \examples{
+\donttest{
 ge <- Example.MWG.15.B.2()
 ge$p
 
@@ -27,4 +28,5 @@ ge$p
 #####
 ge <- Example.MWG.15.B.2(p0 = c(1, 1))
 ge$p
+}
 }

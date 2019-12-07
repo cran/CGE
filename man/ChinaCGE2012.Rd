@@ -10,7 +10,7 @@ A list containing the following components:
     A(state)  \tab function \tab a function which returns a demand structure 41-by-38 matrix under a given price 41-vector.\cr
     B\tab numeric \tab a supply matrix 41-by-38 matrix.\cr
     S0Exg \tab numeric \tab an exogenous supply 41-by-38 matrix.\cr
-    z0 \tab numeric \tab an initial activity level (or production level) 38-vector.\cr
+    z0 \tab numeric \tab an initial exchange levels (i.e. activity levels, production levels or utility levels) 38-vector.\cr
     subject.names \tab character \tab names of 41 subjects (or commodities).\cr
     sector.names  \tab character \tab names of 38 sectors.
   }

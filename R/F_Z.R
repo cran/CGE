@@ -15,6 +15,6 @@ F_Z <- function(A, p, S) {
 
   zeta <- min(s / (A %*% z_structure))
   z <- zeta * z_structure
-  q <- A %*% z / s
+  q <- pmin(A %*% z / s, 1)
   list(z = z, q = q)
 }

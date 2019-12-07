@@ -1145,8 +1145,6 @@ Example6.11 <- function() {
 }
 
 
-#' @export
-
 Example6.13 <- function() {
   sdm(
     A = function(state) {
@@ -1158,7 +1156,8 @@ Example6.13 <- function() {
         0, 0, 0, 0.5, 0.5, 0
       ), 4, 6, TRUE)
       tmpA <- CD_A(alpha, Beta, state$p)
-      tmpA %*% dg(c(state$z[1:2]^-0.25, 1, state$z[4:5]^-0.25, 1))
+      tmp.z <- ifelse(state$z < 1e-10, 1e-10, state$z)
+      tmpA %*% dg(c(tmp.z[1:2]^-0.25, 1, tmp.z[4:5]^-0.25, 1))
     },
     B = matrix(c(
       1, 0, 0, 1, 0, 0,
@@ -1173,13 +1172,15 @@ Example6.13 <- function() {
       NA, NA, NA, NA, NA, 100
     ), 4, 6, TRUE),
     GRExg = 0,
-    numberOfPeriods = 150,
     maxIteration = 1,
-    # z0=c(100,100,100,100,100,100)#(i)
     z0 = c(200, 100, 100, 100, 200, 100), # (ii)
-    # z0=c(100,200,100,200,100,100)#(iii)
+    # z0=c(100,200,100,200,100,100), #(iii)
     priceAdjustmentVelocity = 0.05,
-    ts = TRUE
+    ts = TRUE,
+    policy = function(time, state, state.history) {
+      state$S <- ifelse(state$S > 0 & state$S < 1e-10, 1e-10, state$S)
+      state
+    }
   )
 }
 

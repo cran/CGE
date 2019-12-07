@@ -7,11 +7,11 @@ Example9.10.policy.deficit.fiscal(time, state, state.history)
 }
 \arguments{
 \item{time}{the current time.}
-\item{state}{a list indicating the current economic state including prices, activity levels and supplies.}
+\item{state}{a list indicating the current economic state including prices, exchange levels (i.e. activity levels, production levels or utility levels) and supplies.}
 \item{state.history}{the history of economic states.}
 }
 \value{
-Example9.10.policy.deficit.fiscal returns a list indicating the modified current economic state including prices, activity levels, supplies and current policy data.
+Example9.10.policy.deficit.fiscal returns a list indicating the modified current economic state including prices, exchange levels (i.e. activity levels, production levels or utility levels), supplies and current policy data.
 }
 \author{
 LI Wu <liwu@staff.shu.edu.cn>

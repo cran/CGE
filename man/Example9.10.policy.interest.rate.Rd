@@ -7,11 +7,11 @@ Example9.10.policy.interest.rate(time, state, state.history)
 }
 \arguments{
 \item{time}{the current time.}
-\item{state}{a list indicating the current economic state including prices, activity levels and supplies.}
+\item{state}{a list indicating the current economic state including prices, exchange levels (i.e. activity levels, production levels or utility levels) and supplies.}
 \item{state.history}{the history of economic states.}
 }
 \value{
-Example9.10.policy.interest.rate returns a list indicating the modified current economic state including prices, activity levels and supplies.
+Example9.10.policy.interest.rate returns a list indicating the modified current economic state including prices, exchange levels (i.e. activity levels, production levels or utility levels) and supplies.
 }
 \author{
 LI Wu <liwu@staff.shu.edu.cn>

@@ -2,6 +2,8 @@
 
 CD_A <- function(alpha, Beta, p) {
   # computing Cobb-Douglas demand structure matrix
+  if (!is.matrix(Beta)) Beta <- cbind(Beta)
+
   if (is.numeric(Beta) && any(abs(colSums(Beta) - 1) > 10^-10)) {
     stop("Li: colSum(Beta)~=1, CD_A")
   }

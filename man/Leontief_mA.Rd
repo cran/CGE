@@ -5,10 +5,10 @@
 This function computes a Leontief monetary demand structure matrix in a monetary economy.
 }
 \usage{
-Leontief_mA(A, p)
+Leontief_mA(A.pre, p)
 }
 \arguments{
-\item{A}{a numeric n-by-m matrix.}
+\item{A.pre}{a numeric n-by-m matrix.}
 \item{p}{a nonnegative numeric n-vector or n-by-1 matrix.}
 }
 \value{
@@ -25,9 +25,11 @@ Some elements of A corresponding to money equal -1.
 }
 
 \examples{
-A<-matrix(c(0.5, 1, 1,
-            0.1, 0, 0,
-             -1, -1, -1),3,3,TRUE)
-p<-1:3
-Leontief_mA(A,p)
+A.pre <- matrix(c(
+  0.5, 1, 1,
+  0.1, 0, 0,
+  -1, -1, -1
+), 3, 3, TRUE)
+p <- c(1, 2, 0.1)
+Leontief_mA(A.pre, p)
 }

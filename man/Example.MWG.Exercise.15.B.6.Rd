@@ -18,6 +18,7 @@ Mas-Colell, Andreu and Whinston, Michael Dennis and Green, Jerry R. (1995, ISBN:
 
 }
 \examples{
+\donttest{
 ge <- Example.MWG.Exercise.15.B.6()
 ge$p / ge$p[2] # (3/4)^3
 
@@ -28,4 +29,5 @@ ge$p / ge$p[2] # (4/3)^3
 #####
 ge <- Example.MWG.Exercise.15.B.6(p0 = c(1, 1))
 ge$p
+}
 }

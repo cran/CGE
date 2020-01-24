@@ -33,6 +33,6 @@ Beta <- matrix(c(
   0.5, 0.5, 0.5,
   -1,  -1,  -1
 ), 3, 3, TRUE)
-p <- 1:3
+p <- c(1, 2, 0.1)
 CD_mA(alpha, Beta, p)
 }

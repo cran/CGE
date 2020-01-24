@@ -11,6 +11,10 @@ CES_A <- function(sigma, alpha, Beta, p, Theta = NULL) {
     A <- matrix(0, n, m)
 
     for (cn in 1:m) {
+      if (sigma[cn] == 0) {
+        A[, cn] <- CD_A(alpha[cn], Beta[, cn, drop=F], p)
+        next
+      }
       e1 <- 1 / (1 - sigma[cn])
       e2 <- sigma[cn] / (sigma[cn] - 1)
       e3 <- -1 / sigma[cn]
@@ -24,6 +28,8 @@ CES_A <- function(sigma, alpha, Beta, p, Theta = NULL) {
   }
 
   # beginning ---------------------------------------------------------------
+  if (!is.matrix(Beta)) Beta <- cbind(Beta)
+
   if (is.null(Theta)) {
     return(.CES_A(sigma, alpha, Beta, p))
   }

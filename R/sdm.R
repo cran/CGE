@@ -88,7 +88,7 @@ sdm <- function(A,
       B_t <- B(list(p = p_t, z = z_t, t = time - 1))
     }
 
-    S_tp1 <- (B_t %*% dg(z_t) + depreciationCoef * dg(1 - q_t) %*% S_t)
+    S_tp1 <- sweep(B_t, 2, z_t, "*") + sweep(S_t, 1, depreciationCoef * (1 - q_t), "*")
 
     if (all(is.na(S0Exg))) {
 
@@ -353,7 +353,7 @@ sdm <- function(A,
   result$S <- S0
 
   if (any(!is.na(e0))) {
-    result$e <- t(tail(t(e), 1))
+    result$e <- e[, ncol(e)]
   }
   if (all(is.na(S0Exg))) {
     result$growthRate <- max(z[, ncol(z)]) / max(z[, ncol(z) - 1]) - 1

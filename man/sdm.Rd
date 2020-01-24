@@ -33,23 +33,23 @@ sdm(
 )
 }
 \arguments{
-\item{A}{a demand structure n-by-m matrix (or a function which returns an n-by-m matrix).}
-\item{B}{a supply structure n-by-m matrix (or a function which returns an n-by-m matrix). If (i,j)-th element of S0Exg is not NA, the value of the (i,j)-th element of B will be usless and ignored.}
+\item{A}{a demand coefficient n-by-m matrix (alias demand structure matrix) or a function A(state) which returns an n-by-m matrix.}
+\item{B}{a supply coefficient n-by-m matrix (alias supply structure matrix) or a function which returns an n-by-m matrix. If (i,j)-th element of S0Exg is not NA, the value of the (i,j)-th element of B will be usless and ignored.}
 \item{n}{the number of commodities.}
 \item{m}{the number of economic agents (or sectors).}
 \item{S0Exg}{an initial exogenous supply n-by-m matrix.}
 \item{p0}{an initial price n-vector.}
 \item{z0}{an m-vector consisting of the initial exchange levels (i.e. activity levels, production levels or utility levels).}
-\item{GRExg}{an exogenous growth rate.}
+\item{GRExg}{an exogenous growth rate of the exogenous supplies in S0Exg.}
 \item{moneyOwnerIndex}{a vector consisting of the indices of agents supplying money.}
 \item{moneyIndex}{a vector consisting of the commodity indices of all types of money.}
 \item{pExg}{an n-vector indicating the exogenous prices (if any).}
 \item{tolCond}{the tolerance condition.}
 \item{maxIteration}{the maximum iteration count. If the main purpose of running this function is to do simulation instead of calculating equilibrium, then maxIteration should be set to 1.}
 \item{numberOfPeriods}{the period number in each iteration.}
-\item{depreciationCoef}{the depreciation coefficient.}
-\item{thresholdForPriceAdjustment}{the threshold for price adjustment.}
-\item{priceAdjustmentMethod}{the price adjustment method.}
+\item{depreciationCoef}{the depreciation coefficient (i.e. 1 minus the depreciation rate) of the unsold products.}
+\item{thresholdForPriceAdjustment}{the threshold for the fixed percentage price adjustment method.}
+\item{priceAdjustmentMethod}{the price adjustment method. Normally it should be set to "variable". If it is set to "fixed", a fixed percentage price adjustment method will be used.}
 \item{priceAdjustmentVelocity}{the price adjustment velocity.}
 \item{priceAdjustmentVelocityCoefficient}{the changing coefficient of the price adjustment velocity.}
 \item{substitutionMethod}{the substitution method for iterations.}
@@ -66,14 +66,19 @@ sdm returns a list containing the following components:
 \item{S}{equilibrium supply matrix at the initial period.}
 \item{e}{equilibrium foreign exchange rates in a multi-money economy.}
 \item{growthRate}{the endogenous equilibrium growth rate in a pure production economy.}
-\item{A}{the equilibrium demand structure matrix.}
-\item{B}{If B is a function, the equilibrium supply structure matrix is returned.}
+\item{A}{the equilibrium demand coefficient matrix.}
+\item{B}{If B is a function, the equilibrium supply coefficient matrix is returned.}
 \item{ts.p}{the time series of prices in the last iteration.}
 \item{ts.z}{the time series of exchange levels (i.e. activity levels, production levels or utility levels) in the last iteration.}
 \item{ts.S}{the time series of supply matrix in the last iteration.}
 \item{ts.q}{the time series of sales rates in the last iteration.}
 \item{ts.e}{the time series of foreign exchange rates in the last iteration.}
 \item{policy.data}{the policy data.}
+}
+\details{
+The parameters A may be a function A(state) wherein state is a list consisting of p (the price vector), z (the output and utility vector), w (the wealth vector), t (the time) and e (the foreign exchange rate vector if any). state indicates the states at time t.
+
+The parameters B also may be a function B(state) wherein state is a list consisting of p (the price vector), z (the output and utility vector) and t (the time).
 }
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
@@ -170,7 +175,7 @@ ge <- sdm(
                      0.5, 0,   0,
                      0.5, 1 - a, 1 - a), 3, 3, TRUE)
 
-    #demand structure matrix (alias demand coefficient matrix).
+    #the demand coefficient matrix.
     CD_A(alpha, Beta, state$p)
   },
   B = diag(3),

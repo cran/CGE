@@ -1144,7 +1144,7 @@ Example6.11 <- function() {
   )
 }
 
-
+#' @export
 Example6.13 <- function() {
   sdm(
     A = function(state) {
@@ -1283,10 +1283,10 @@ Example7.3 <- function() {
 
 Example7.4 <- function() {
   sdm(
+    moneyIndex = 3,
+    moneyOwnerIndex = 3,
     A = function(state) {
-      moneyIndex <- 3
-      moneyOwnerIndex <- 3
-      alpha <- rbind(1, 1, 1)
+      alpha <- c(1, 1, 1)
       Beta <- matrix(c(
         0.5, 0.5, 0.5,
         0.5, 0.5, 0.5,
@@ -1417,9 +1417,9 @@ Example7.6 <- function() {
       tmp
     },
     GRExg = 0,
-    moneyOwnerIndex = rbind(3, 6),
-    moneyIndex = rbind(3, 6),
-    pExg = rbind(NA, NA, 0.1, NA, NA, 0.1)
+    moneyOwnerIndex = c(3, 6),
+    moneyIndex = c(3, 6),
+    pExg = c(NA, NA, 0.1, NA, NA, 0.1)
   )
 }
 

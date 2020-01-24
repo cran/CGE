@@ -21,10 +21,10 @@ LI Wu <liwu@staff.shu.edu.cn>
 }
 
 \examples{
-CD_A(1, rbind(0.5, 0.5), c(1, 2))
+CD_A(1, c(0.5, 0.5), c(1, 2))
 
 #####
-alpha <- rbind(5, 3, 1)
+alpha <- c(5, 3, 1)
 Beta <- matrix(c(
   0.6, 0.4, 0.2,
   0.1, 0.4, 0.7,

@@ -25,7 +25,7 @@ LI Wu <liwu@staff.shu.edu.cn>
 }
 
 \examples{
-CES_A(-1, 2, rbind(0.2, 0.1), c(1, 2))
+CES_A(-1, 2, c(0.2, 0.1), c(1, 2))
 
 #####
 sigma <- c(-1, -1, -1)
@@ -41,8 +41,8 @@ CES_A(sigma, alpha, Beta, p)
 #####
 sigma <- -1e-10
 alpha <- 1
-Beta <- rbind(0.8, 0.2)
-Theta <- rbind(2, 1)
+Beta <- c(0.8, 0.2)
+Theta <- c(2, 1)
 p <- c(1, 1)
 CES_A(sigma, alpha, Beta, p, Theta)
 CD_A(alpha * prod(Theta^(-Beta)), Beta, p)

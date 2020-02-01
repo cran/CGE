@@ -1,8 +1,8 @@
 \name{CES_A}
 \alias{CES_A}
-\title{CES Demand Structure Matrix}
+\title{CES Demand Coefficient Matrix}
 \description{
-This function computes the CES demand structure matrix.
+This function computes the CES demand coefficient matrix.
 }
 \usage{
 CES_A(sigma, alpha, Beta, p, Theta = NULL)

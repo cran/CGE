@@ -1,8 +1,8 @@
 \name{CES_mA}
 \alias{CES_mA }
-\title{CES Monetary Demand Structure Matrix}
+\title{CES Monetary Demand Coefficient Matrix}
 \description{
-This function computes a CES monetary demand structure matrix in a monetary economy.
+This function computes a CES monetary demand coefficient matrix in a monetary economy.
 }
 \usage{
 CES_mA(sigma, alpha, Beta, p, Theta = NULL)

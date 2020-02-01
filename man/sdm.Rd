@@ -93,6 +93,7 @@ Varian, Hal R. (1992, ISBN: 0393957357). Microeconomic Analysis. W. W. Norton & 
 LI Wu <liwu@staff.shu.edu.cn>
 }
 \seealso{
+\code{\link{iep}};
 \code{\link{Example2.2}};
 \code{\link{Example2.3}};
 \code{\link{Example.Section.3.1.2.corn}};

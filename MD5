@@ -1,4 +1,4 @@
-53196d340b92c9131f5a52616b51fd1b *DESCRIPTION
+c391a867734a4a3700d8f200bfe481d6 *DESCRIPTION
 34b0bcd25f7c9620517a82381aa05960 *NAMESPACE
 2e9c399b420fdec9673d63602439355f *R/CD_A.R
 b9cc42daf50ecd5b409051a03de0f617 *R/CD_mA.R
@@ -10,13 +10,13 @@ b9cc42daf50ecd5b409051a03de0f617 *R/CD_mA.R
 a42a6de8f6a67901b81717844b774d92 *R/MWG_Varian_examples.R
 a1ea492fdb95d21c1bbfc97a6bbce838 *R/PF_eig.R
 55668c38256a16892d49a53d8cf4b59a *R/dg.R
-079f5478282e2ea1f3d412cfcefaf0ef *R/iep.R
+dec3b7773a785c759827321eef22559b *R/iep.R
 b8693444d0523fdd7f3d0b090d10769b *R/sdm.R
-014bd558a0966b8d38a729c76e6fb70b *R/sdm_examples.R
+b16953743542e7cea8b013e1fb19df64 *R/sdm_examples.R
 f4fdb7f54f5d838a4f417543c7b6f1b0 *man/CD_A.Rd
 0169a11eda3f76fc9b2c8b82b584bd5d *man/CD_mA.Rd
-8755fdf91a67cdac78215fd12822846f *man/CES_A.Rd
-731126fe7b0a5883528a0e7dc1cf63ab *man/CES_mA.Rd
+4692c5df440f2b748e27df62da35a32e *man/CES_A.Rd
+b35e2079ff2afbcb943360ac195d9956 *man/CES_mA.Rd
 090962208b572c694ea0619dcff9926c *man/ChinaCGE2012.Rd
 d1ceb9f9e219154b67cda594bb20a99b *man/Example.MWG.15.B.1.Rd
 d931f8105d0256082df93a0ae1c6e8e8 *man/Example.MWG.15.B.2.Rd
@@ -102,9 +102,9 @@ e7352f37c6a7585ee875f3390c996b51 *man/Example9.4.Rd
 601d97be1bff915446c15742ff30878b *man/Example9.5.Rd
 94d7e6e6fd9eb6f686e9941e89d0f2d7 *man/Example9.6.Rd
 a8d0af25dfd58a3fc87530ceb7e37456 *man/Example9.7.Rd
-2123171c800d5ee3545f26a198627eb3 *man/F_Z.Rd
-c340c1314638b4178b2ab596bca1cfa6 *man/Leontief_mA.Rd
+2543b9a247f71a09e9b1adff522f4370 *man/F_Z.Rd
+3fe7f45107b53680e84bfe60dfc29bfc *man/Leontief_mA.Rd
 9e8b13cfa6f924fb69a08dbeab9714a8 *man/PF_eig.Rd
 7c507c4ca7ad8ca64d40b6299cce4364 *man/dg.Rd
-97fe7aa8d1ccac2f1f4c1e397bd9b3de *man/iep.Rd
-ecd5335df0bff5414bf26c778eb7606e *man/sdm.Rd
+ffe0383813df72e2bef02265ce8e3682 *man/iep.Rd
+986ccdbe9cdad816ec2f7f3d553423e8 *man/sdm.Rd

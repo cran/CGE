@@ -1,8 +1,8 @@
 \name{Leontief_mA}
 \alias{Leontief_mA }
-\title{Leontief Monetary Demand Structure Matrix}
+\title{Leontief Monetary Demand Coefficient Matrix}
 \description{
-This function computes a Leontief monetary demand structure matrix in a monetary economy.
+This function computes a Leontief monetary demand coefficient matrix in a monetary economy.
 }
 \usage{
 Leontief_mA(A.pre, p)

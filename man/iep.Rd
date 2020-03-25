@@ -187,7 +187,7 @@ A <- function(state) {
 B <- matrix(c(
   1, 1, 0,
   0, 0, 1
-), 2, 3, T)
+), 2, 3, TRUE)
 
 SExg.iep <- {
   tmp <- matrix(NA, 2, 3)

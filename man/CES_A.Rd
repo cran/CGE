@@ -15,7 +15,7 @@ CES_A(sigma, alpha, Beta, p, Theta = NULL)
 \item{Theta}{null or a positive numeric n-by-m matrix.}
 }
 \value{
-A n-by-m matrix is computed which indicates the demand structure of agents (firms or consumers) with CES production functions or utility functions (e.g. alpha*(beta1*x1^sigma+beta2*x2^sigma)^(1/sigma) or alpha*(beta1*(x1/theta1)^sigma+beta2*(x2/theta2)^sigma)^(1/sigma)) under the price vector p.
+A demand coefficient n-by-m matrix is computed which indicates the demands of agents (firms or consumers) for obtaining unit product or utility with CES production functions or utility functions (e.g. alpha*(beta1*x1^sigma+beta2*x2^sigma)^(1/sigma) or alpha*(beta1*(x1/theta1)^sigma+beta2*(x2/theta2)^sigma)^(1/sigma)) under the price vector p.
 }
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
@@ -46,6 +46,9 @@ Theta <- c(2, 1)
 p <- c(1, 1)
 CES_A(sigma, alpha, Beta, p, Theta)
 CD_A(alpha * prod(Theta^(-Beta)), Beta, p)
+
+CES_A(sigma, alpha, Beta, p, Beta)
+CD_A(alpha * prod(Beta^(-Beta)), Beta, p)
 
 CES_A(-1e5, alpha, Beta, p, Theta)
 }

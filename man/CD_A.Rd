@@ -11,7 +11,7 @@ CD_A(alpha, Beta, p)
 \item{p}{a nonnegative numeric n-vector or n-by-1 matrix.}
 }
 \value{
-A n-by-m matrix is computed which indicates the demand structure of agents (firms or consumers) with Cobb-Douglas production functions or utility functions under the price vector p.
+A demand coefficient n-by-m matrix is computed which indicates the demands of agents (firms or consumers) for obtaining unit product or utility with Cobb-Douglas production functions or utility functions under the price vector p.
 }
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)

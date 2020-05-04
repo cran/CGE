@@ -24,8 +24,6 @@ sdm(
   thresholdForPriceAdjustment = 0.99,
   priceAdjustmentMethod = "variable",
   priceAdjustmentVelocity = 0.15,
-  priceAdjustmentVelocityCoefficient = 0.95,
-  substitutionMethod = "finalValue",
   trace = TRUE,
   ts = FALSE,
   policy = NULL,
@@ -51,8 +49,6 @@ sdm(
 \item{thresholdForPriceAdjustment}{the threshold for the fixed percentage price adjustment method.}
 \item{priceAdjustmentMethod}{the price adjustment method. Normally it should be set to "variable". If it is set to "fixed", a fixed percentage price adjustment method will be used.}
 \item{priceAdjustmentVelocity}{the price adjustment velocity.}
-\item{priceAdjustmentVelocityCoefficient}{the changing coefficient of the price adjustment velocity.}
-\item{substitutionMethod}{the substitution method for iterations.}
 \item{trace}{if TRUE, information is printed during the running of sdm.}
 \item{ts}{if TRUE, the time series of the last iteration are returned.}
 \item{policy}{a policy function.}
@@ -85,9 +81,9 @@ LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: P
 
 LI Wu (2010) A Structural Growth Model and its Applications to Sraffa's System. http://www.iioa.org/conferences/18th/papers/files/104_20100729011_AStructuralGrowthModelanditsApplicationstoSraffasSstem.pdf
 
-Torres, Jose L. (2016, ISBN: 9781622730452). Introduction to Dynamic Macroeconomic General Equilibrium Models (Second Edition). Vernon Press.
+Torres, Jose L. (2016, ISBN: 9781622730452) Introduction to Dynamic Macroeconomic General Equilibrium Models (Second Edition). Vernon Press.
 
-Varian, Hal R. (1992, ISBN: 0393957357). Microeconomic Analysis. W. W. Norton & Company.
+Varian, Hal R. (1992, ISBN: 0393957357) Microeconomic Analysis. W. W. Norton & Company.
 }
 \author{
 LI Wu <liwu@staff.shu.edu.cn>

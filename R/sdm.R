@@ -21,8 +21,6 @@ sdm <- function(A,
                 thresholdForPriceAdjustment = 0.99,
                 priceAdjustmentMethod = "variable",
                 priceAdjustmentVelocity = 0.15,
-                priceAdjustmentVelocityCoefficient = 0.95,
-                substitutionMethod = "finalValue",
                 trace = TRUE,
                 ts = FALSE,
                 policy = NULL,
@@ -165,6 +163,9 @@ sdm <- function(A,
 
 
   # beginning ---------------------------------------------------------------
+  substitutionMethod <-  "finalValue" # the substitution method for iterations.
+  priceAdjustmentVelocityCoefficient <-  0.95 # the changing coefficient of the price adjustment velocity.
+
   result <- c()
 
   if (is.na(GRExg) && !all(is.na(S0Exg))) GRExg <- 0

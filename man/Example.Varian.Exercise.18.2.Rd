@@ -11,7 +11,7 @@ LI Wu <liwu@staff.shu.edu.cn>
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
 
-Varian, Hal R. (1992, ISBN: 0393957357). Microeconomic Analysis. W. W. Norton & Company.
+Varian, Hal R. (1992, ISBN: 0393957357) Microeconomic Analysis. W. W. Norton & Company.
 }
 \examples{
 ge <- Example.Varian.Exercise.18.2()

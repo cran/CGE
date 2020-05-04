@@ -14,9 +14,9 @@ LI Wu <liwu@staff.shu.edu.cn>
 \references{
 LI Wu (2019, ISBN: 9787521804225) General Equilibrium and Structural Dynamics: Perspectives of New Structural Economics. Beijing: Economic Science Press. (In Chinese)
 
-Mas-Colell, Andreu and Whinston, Michael Dennis and Green, Jerry R. (1995, ISBN: 0195073401). Microeconomic Theory. Oxford University Press (New York).
+Mas-Colell, Andreu and Whinston, Michael Dennis and Green, Jerry R. (1995, ISBN: 0195073401) Microeconomic Theory. Oxford University Press (New York).
 
-Varian, Hal R. (1992, ISBN: 0393957357). Microeconomic Analysis. W. W. Norton & Company.
+Varian, Hal R. (1992, ISBN: 0393957357) Microeconomic Analysis. W. W. Norton & Company.
 }
 \examples{
 Example.Varian.P352()

@@ -117,7 +117,7 @@ sdm <- function(A,
       p_tp1 <- tmp$p
       S_tp1 <- tmp$S
 
-      if (!is.null(policy) && !is.null(tmp$current.policy.data)) {
+      if (!is.null(tmp$current.policy.data)) {
         policy.data <<- rbind(policy.data, tmp$current.policy.data)
       }
     } # 20181205
@@ -163,8 +163,8 @@ sdm <- function(A,
 
 
   # beginning ---------------------------------------------------------------
-  substitutionMethod <-  "finalValue" # the substitution method for iterations.
-  priceAdjustmentVelocityCoefficient <-  0.95 # the changing coefficient of the price adjustment velocity.
+  substitutionMethod <- "finalValue" # the substitution method for iterations.
+  priceAdjustmentVelocityCoefficient <- 0.95 # the changing coefficient of the price adjustment velocity.
 
   result <- c()
 
@@ -230,6 +230,7 @@ sdm <- function(A,
       xt <- c()
       xt$p <- p[, t - 1]
       xt$S <- S[, , t - 1]
+      dim(xt$S) <- c(n, m)
       xt$q <- q[, t - 1]
       xt$z <- z[, t - 1]
       xt$e <- e[, t - 1]
@@ -289,6 +290,7 @@ sdm <- function(A,
     }
 
     S0 <- S[, , dim(S)[3]]
+    dim(S0) <- c(n, m)
     switch(
       substitutionMethod,
       "pMeanValue" = {
@@ -307,7 +309,6 @@ sdm <- function(A,
       "finalValue" = {
         p0 <- p[, ncol(p)]
         z0 <- z[, ncol(z)]
-        S0 <- S[, , dim(S)[3]]
       },
       stop("Li: wrong substitutionMethod!")
     )

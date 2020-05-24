@@ -32,13 +32,13 @@ sdm(
 }
 \arguments{
 \item{A}{a demand coefficient n-by-m matrix (alias demand structure matrix) or a function A(state) which returns an n-by-m matrix.}
-\item{B}{a supply coefficient n-by-m matrix (alias supply structure matrix) or a function which returns an n-by-m matrix. If (i,j)-th element of S0Exg is not NA, the value of the (i,j)-th element of B will be usless and ignored.}
+\item{B}{a supply coefficient n-by-m matrix (alias supply structure matrix) or a function which returns an n-by-m matrix. If (i,j)-th element of S0Exg is not NA, the value of the (i,j)-th element of B will be useless and ignored.}
 \item{n}{the number of commodities.}
 \item{m}{the number of economic agents (or sectors).}
-\item{S0Exg}{an initial exogenous supply n-by-m matrix.}
+\item{S0Exg}{an initial exogenous supply n-by-m matrix. This matrix may contain NA, but not zero.}
 \item{p0}{an initial price n-vector.}
 \item{z0}{an m-vector consisting of the initial exchange levels (i.e. activity levels, production levels or utility levels).}
-\item{GRExg}{an exogenous growth rate of the exogenous supplies in S0Exg.}
+\item{GRExg}{an exogenous growth rate of the exogenous supplies in S0Exg. If GRExg is NA and some commodities have exogenous supply, then GRExg will be set to 0.}
 \item{moneyOwnerIndex}{a vector consisting of the indices of agents supplying money.}
 \item{moneyIndex}{a vector consisting of the commodity indices of all types of money.}
 \item{pExg}{an n-vector indicating the exogenous prices (if any).}
@@ -59,7 +59,7 @@ sdm returns a list containing the following components:
 \item{tolerance}{the tolerance of the results.}
 \item{p}{equilibrium prices.}
 \item{z}{equilibrium exchange levels (i.e. activity levels, output levels or utility levels).}
-\item{S}{equilibrium supply matrix at the initial period.}
+\item{S}{the equilibrium supply matrix at the initial period.}
 \item{e}{equilibrium foreign exchange rates in a multi-money economy.}
 \item{growthRate}{the endogenous equilibrium growth rate in a pure production economy.}
 \item{A}{the equilibrium demand coefficient matrix.}
